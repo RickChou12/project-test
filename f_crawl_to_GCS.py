@@ -78,7 +78,7 @@ def crawl():
     df.to_csv(csv_buffer, encoding='utf-8', index=False)
 
     # 創建客戶端 並上傳
-    service_account_path = 'json_key.json'
+    service_account_path = '/app/json_key.json'
     storage_client = storage.Client.from_service_account_json(service_account_path)
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(destination_blob_name)

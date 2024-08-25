@@ -20,7 +20,7 @@ def normalization():
     gcs_file_path = f'{folder_name}/{file_name}'
 
     # 創建 GCS 客户端
-    service_account_path = 'json_key.json'
+    service_account_path = '/app/json_key.json'
     storage_client = storage.Client.from_service_account_json(service_account_path)
     bucket = storage_client.bucket(bucket_name)
     blob = bucket.blob(gcs_file_path)
