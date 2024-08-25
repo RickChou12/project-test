@@ -71,7 +71,7 @@ def crawl():
 
     # GCS bucket、路徑設置
     bucket_name = 'tir102-project-database'  # 替换为你的 GCS bucket 名称
-    destination_blob_name = f'stage/steamchart/SteamCharts_Rank/test({_today}).csv'
+    destination_blob_name = f'stage/steamchart/SteamCharts_Rank/SteamCharts_Rank({_today}).csv'
 
     # 將檔案存至內存
     csv_buffer = io.StringIO()
@@ -92,9 +92,9 @@ if __name__ == "__main__":
         source=GitHubRepository.load("project-test"),
         entrypoint="f_crawl_to_GCS.py:crawl",
     ).deploy(
-        name="test-crawl-to-gcs",
-        tags=["test", "gcs"],
-        work_pool_name="test-subproc",
+        name="crawl-steamChartsrank-to-gcs",
+        tags=["steamcharts_rank", "gcs"],
+        work_pool_name="docker",
         job_variables=dict(pull_policy="Never"),
         # parameters=dict(name="Marvin"),
         cron="5 12 * * *"

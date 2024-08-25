@@ -37,7 +37,7 @@ def normalization():
 
     # 設置輸出檔名、路徑    
     output_file_name = f'test({_today})_normalization.csv'
-    output_gcs_path = f'data/SteamCharts_Rank/test{_date}/{output_file_name}'
+    output_gcs_path = f'data/SteamCharts_Rank/dt={_date}/{output_file_name}'
 
     # 將輸出檔案寫入內存
     output_csv_buffer = io.StringIO()
@@ -56,10 +56,10 @@ if __name__ == "__main__":
         source=GitHubRepository.load("project-test"),
         entrypoint="f_normalization_to_GCS.py:normalization",
     ).deploy(
-        name="test-normalization-to-gcs",
-        tags=["test", "gcs"],
-        work_pool_name="test-subproc",
+        name="normalization-steamChartsrank-to-gcs",
+        tags=["steamcharts_rank", "gcs"],
+        work_pool_name="docker",
         job_variables=dict(pull_policy="Never"),
         # parameters=dict(name="Marvin"),
-        cron="5 12 * * *"
+        cron="20 12 * * *"
     )
